@@ -154,49 +154,49 @@ var fight = function (enemy) {
         // Subtract the value of `enemyAttack` from value of `playerHealth`and use that result to update the value in the `playerHealth` variable.
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
         playerInfo.health = Math.max(0, playerInfo.health - damage);
+
         // Log a resulting message to the console so we know that it worked.
         console.log(
             enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining."
         );
+
         //check player's health
         if (playerInfo.health <= 0) {
             window.alert(playerInfo.name + " has died!");
             break;
+
         } else {
             window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
         }
     }
-};
+}
 
 // SHOP features
 var shop = function () {
     var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
-    );
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE.");
 
     //use switch to carry out action
-    switch (shopOptionPrompt) {
-        case "REFILL": // new case
-        case "refill":
-            playerInfo.refillHealth();
-            break;
+    shopOptionPrompt = parseInt(shopOptionPrompt); {
+        switch (shopOptionPrompt) {
+            case 1: // Refill Health
+                playerInfo.refillHealth();
+                break;
+            case 2: // Upgrade Attack
+                playerInfo.upgradeAttack();
+                break;
 
-        case "UPGRADE": // new case
-        case "upgrade":
-            playerInfo.upgradeAttack();
-            break;
+            case 3: // LEave the store
+                window.alert("leaving the store.");
+                break;
 
-        case "LEAVE": // new case
-        case "leave":
-            window.alert("Leaving the store.");
-            break;
-
-        //do nothing, so function will end
-        default:
-            window.alert("You did not pick a valid option. Try again.");
-            // call shop() again to force player to pick a valid option 
-            shop();
-            break;
+            //do nothing, so function will end
+            default:
+                window.alert("You did not pick a valid option. Try again.");
+                // call shop() again to force player to pick a valid option 
+                shop();
+                break;
+        }
     }
 };
 
